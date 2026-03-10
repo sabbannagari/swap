@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask CRUD</title>
+</head>
+<body>
+
+<h2>Add Record</h2>
+
+<form action="/add" method="post">
+    <input type="text" name="name" placeholder="Enter name"/>
+    <button type="submit">Add</button>
+</form>
+
+<h2>Records</h2>
+
+<ul>
+{% for r in records %}
+    <li>
+        {{ r.name }}
+        <button onclick="deleteRecord({{r.id}})">Delete</button>
+    </li>
+{% endfor %}
+</ul>
+
+<script>
+function deleteRecord(id) {
+    fetch('/delete/' + id, {method: 'DELETE'})
+    .then(res => res.json())
+    .then(() => location.reload())
+}
+</script>
+
+</body>
+</html>
