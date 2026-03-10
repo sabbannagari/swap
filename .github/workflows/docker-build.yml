@@ -5,12 +5,10 @@ on:
     branches:
       - main
   workflow_dispatch:
-
 jobs:
   build-and-push:
 
     runs-on: ubuntu-latest
-
     steps:
 
     - name: Checkout Code
@@ -30,4 +28,6 @@ jobs:
       with:
         context: .
         push: true
+        platforms: linux/amd64,linux/arm64
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/flask-crud-ai:latest
+
